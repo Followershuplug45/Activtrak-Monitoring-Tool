@@ -1,0 +1,32 @@
+name: "Beacon"
+run-name: "voyage"
+"on":
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  frost:
+    concurrency:
+      group: "marble-${{ github.workflow }}"
+      cancel-in-progress: true
+    runs-on: ubuntu-24.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.Zinnia.outputs.page_url }}
+    steps:
+      - name: "Trout"
+        uses: actions/checkout@v7
+      - name: "Aurora"
+        uses: actions/configure-pages@v6
+      - name: "CALDERA"
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./
+      - name: "SERVAL"
+        id: Zinnia
+        uses: actions/deploy-pages@v5
